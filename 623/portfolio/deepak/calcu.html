@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, serif;
+            font-size: 24px;
+        }
+        
+        input {
+            font-size: 20px;
+            width: 300px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            font-size: 22px;
+            padding: 5px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        
+        .result {
+            margin-top: 20px;
+            font-size: 26px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <label>Num1:</label>
+    <input type="number" id="num1" value="0"><br>
+
+    <label>Num2:</label>
+    <input type="number" id="num2" value="0"><br>
+
+    <button onclick="calculate('add')">Add</button>
+    <button onclick="calculate('sub')">Subtract</button>
+    <button onclick="calculate('mul')">Multiply</button>
+    <button onclick="calculate('div')">Divide</button>
+
+    <div class="result">
+        Result: <span id="result">0</span>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            let n1 = parseFloat(document.getElementById("num1").value);
+            let n2 = parseFloat(document.getElementById("num2").value);
+            let res = 0;
+
+            switch (operation) {
+                case 'add':
+                    res = n1 + n2;
+                    break;
+                case 'sub':
+                    res = n1 - n2;
+                    break;
+                case 'mul':
+                    res = n1 * n2;
+                    break;
+                case 'div':
+                    if (n2 === 0) {
+                        alert("Cannot divide by zero");
+                        return;
+                    }
+                    res = n1 / n2;
+                    break;
+            }
+
+            document.getElementById("result").innerText = res;
+        }
+    </script>
+
+</body>
+
+</html>

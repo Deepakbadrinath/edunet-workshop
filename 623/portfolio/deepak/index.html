@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple HTML with Script</title>
+
+    <header>
+        <h1>My Website</h1>
+        <nav>Navigation Bar</nav>
+        <p>Welcome to my webpage</p>
+        <span>HTML Example</span>
+    </header>
+</head>
+
+<body>
+
+    <h2>Body Content</h2>
+    <p id="text">This text will be changed using JavaScript</p>
+    <button onclick="changeText()">Click Me</button>
+
+    <script>
+        function changeText() {
+            var a = document.querySelector("p");
+            a.innerHTML = "Text changed using JavaScript!";
+            a.style.color = "blue";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+body, h1, h2, h3, p, table {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #2f3640;
+    color: #fff;
+    padding: 30px 0 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin: 0;
+}
+
+nav {
+    background-color: #3b3b98;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: #686de0;
+}
+
+section, aside {
+    padding: 18px 20px;
+    margin-bottom: 20px;
+}
+
+section {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+}
+
+section img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+aside {
+    background: #f5f6fa;
+    border-left: 4px solid #3b3b98;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-top: 10px;
+}
+
+thead {
+    background-color: #3b3b98;
+    color: #fff;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #d1d8e0;
+    text-align: left;
+}
+
+footer {
+    background: #353b48;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1em;
+    margin-top: 30px;
+}
+
+@media (min-width: 900px) {
+    body {
+        display: grid;
+        grid-template-areas:
+            "header header"
+            "nav nav"
+            "section aside"
+            "footer footer";
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        min-height: 100vh;
+    }
+
+    header { grid-area: header; }
+    nav { grid-area: nav; }
+    section { grid-area: section; }
+    aside { grid-area: aside; }
+    footer { grid-area: footer; }
+
+    section, aside {
+        margin-bottom: 0;
+        padding: 24px 30px;
+    }
+}

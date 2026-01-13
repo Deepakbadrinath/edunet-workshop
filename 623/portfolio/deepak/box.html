@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Button Color Change</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        #box {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border: 2px solid black;
+            margin: 20px auto;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <button onclick="changeColor()">Check</button>
+    <script>
+        function changeColor() {
+            let box = document.getElementById("box");
+
+            if (box.style.backgroundColor === "lightblue") {
+                box.style.backgroundColor = "white";
+            } else {
+                box.style.backgroundColor = "lightblue";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

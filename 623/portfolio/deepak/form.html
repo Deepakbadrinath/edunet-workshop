@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        
+        .form-container {
+            width: 400px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        th {
+            background: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <form onsubmit="addDetails(event)">
+
+            <label>Full Name</label>
+            <input type="text" id="name" required>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Phone Number</label>
+            <input type="text" id="phone">
+
+            <label>Address</label>
+            <textarea id="address" rows="3"></textarea>
+
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will appear here -->
+        </tbody>
+    </table>
+
+    <script>
+        let count = 1;
+
+        function addDetails(event) {
+            event.preventDefault(); // stop form reload
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let address = document.getElementById("address").value;
+
+            let table = document.getElementById("tableBody");
+            let row = table.insertRow();
+
+            row.insertCell(0).innerText = count++;
+            row.insertCell(1).innerText = name;
+            row.insertCell(2).innerText = email;
+            row.insertCell(3).innerText = phone;
+            row.insertCell(4).innerText = address;
+
+            // clear form
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("address").value = "";
+        }
+    </script>
+
+</body>
+
+</html>

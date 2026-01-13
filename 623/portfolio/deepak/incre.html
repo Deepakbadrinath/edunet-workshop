@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Increment Decrement</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="counter">
+        <button onclick="decrement()">-</button>
+        <span id="count">0</span>
+        <button onclick="increment()">+</button>
+    </div>
+
+    <script>
+        let value = 0;
+
+        function increment() {
+            value++;
+            document.getElementById("count").innerText = value;
+        }
+
+        function decrement() {
+            value--;
+            document.getElementById("count").innerText = value;
+        }
+    </script>
+
+</body>
+
+</html>
