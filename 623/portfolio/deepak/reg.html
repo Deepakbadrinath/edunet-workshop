@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Step Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .step {
+            display: none;
+        }
+        
+        .step.active {
+            display: block;
+        }
+        
+        .progress {
+            width: 100%;
+            background: #ddd;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            transition: width 0.3s ease;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            padding: 12px 24px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .btn-prev {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-prev:hover {
+            background: #5a6268;
+        }
+        
+        .btn-next {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-next:hover {
+            background: #0056b3;
+        }
+        
+        .btn-submit {
+            background: #28a745;
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            background: #218838;
+        }
+        
+        .step-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Registration Form</h2>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <form id="form">
+        <!-- Step 1 -->
+        <div class="step active">
+            <h3>👤 Step 1: Personal Details</h3>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <div class="step-buttons">
+                <div></div>
+                <button type="button" class="btn-next" onclick="nextStep()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+            <h3>🏠 Step 2: Address Details</h3>
+            <input type="text" placeholder="Street Address" required>
+            <input type="text" placeholder="City" required>
+            <div class="step-buttons">
+                <button type="button" class="btn-prev" onclick="prevStep()">← Back</button>
+                <button type="button" class="btn-next" onclick="nextStep()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+            <h3>✅ Step 3: Review & Submit</h3>
+            <p style="background: #e8f5e8; padding: 15px; border-radius: 5px;">
+                Review your information and click Submit!
+            </p>
+            <div class="step-buttons">
+                <button type="button" class="btn-prev" onclick="prevStep()">← Back</button>
+                <button type="submit" class="btn-submit">✅ Submit Form</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll(".step");
+        const progressBar = document.getElementById("progressBar");
+        const form = document.getElementById("form");
+
+        function validateStep() {
+            const current = steps[currentStep];
+            const inputs = current.querySelectorAll('input[required]');
+            let valid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#ff4444';
+                    input.style.borderWidth = '2px';
+                    valid = false;
+                } else {
+                    input.style.borderColor = '#ddd';
+                    input.style.borderWidth = '1px';
+                }
+            });
+            return valid;
+        }
+
+        function showStep(step) {
+            steps.forEach((s, i) => {
+                s.classList.toggle("active", i === step);
+            });
+            progressBar.style.width = ((step + 1) / steps.length) * 100 + "%";
+            currentStep = step;
+        }
+
+        function nextStep() {
+            if (validateStep() && currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateStep()) {
+                alert('🎉 Form submitted successfully!');
+                form.reset();
+                currentStep = 0;
+                showStep(0);
+            }
+        });
+
+        showStep(currentStep);
+    </script>
+</body>
+
+</html>

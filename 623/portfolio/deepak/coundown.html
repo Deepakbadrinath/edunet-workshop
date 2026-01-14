@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        input {
+            padding: 8px;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        
+        #timer {
+            font-size: 32px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Countdown Timer</h2>
+
+    <input type="number" id="timeInput" placeholder="Enter time in seconds" />
+
+    <div id="timer">00</div>
+
+    <div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <script>
+        let timer;
+        let timeLeft = 0;
+        let originalTime = 0;
+        let isRunning = false;
+
+        function updateDisplay() {
+            document.getElementById("timer").textContent = timeLeft;
+        }
+
+        function startTimer() {
+            if (isRunning) return;
+
+            if (timeLeft === 0) {
+                originalTime = parseInt(document.getElementById("timeInput").value);
+                if (isNaN(originalTime) || originalTime <= 0) {
+                    alert("Please enter a valid time in seconds");
+                    return;
+                }
+                timeLeft = originalTime;
+            }
+
+            isRunning = true;
+
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay();
+                } else {
+                    clearInterval(timer);
+                    isRunning = false;
+                    alert("Time's up!");
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timer);
+            isRunning = false;
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            isRunning = false;
+            timeLeft = originalTime;
+            updateDisplay();
+        }
+    </script>
+
+</body>
+
+</html>

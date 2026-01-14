@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Search Filtering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        input {
+            padding: 8px;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            padding: 5px 0;
+        }
+        
+        #noResults {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Product Search</h2>
+
+    <input type="text" id="searchInput" placeholder="Search products..." />
+
+    <ul id="productList">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+        <li>Mango</li>
+        <li>Pineapple</li>
+    </ul>
+
+    <p id="noResults">No products found</p>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const products = document.querySelectorAll("#productList li");
+        const noResults = document.getElementById("noResults");
+
+        searchInput.addEventListener("input", () => {
+            const searchText = searchInput.value.toLowerCase();
+            let found = false;
+
+            products.forEach(product => {
+                if (product.textContent.toLowerCase().includes(searchText)) {
+                    product.style.display = "list-item";
+                    found = true;
+                } else {
+                    product.style.display = "none";
+                }
+            });
+
+            noResults.style.display = found ? "none" : "block";
+        });
+    </script>
+
+</body>
+
+</html>
